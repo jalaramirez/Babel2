@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="BabelEntities-Web.config Connection String" description="BabelEntities Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="metadata=res://*/Models.Model.csdl|res://*/Models.Model.ssdl|res://*/Models.Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-KV0K0JR;initial catalog=Babel;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\jesus\\source\\repos\\WebApplication2\\WebApplication2\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='BabelEntities']/@connectionString" />
+  </parameter>
+  <parameter name="Datos-Web.config Connection String" description="Datos Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="data source=DESKTOP-KV0K0JR;initial catalog=Babel;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\jesus\\source\\repos\\WebApplication2\\WebApplication2\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Datos']/@connectionString" />
+  </parameter>
+  <parameter name="Data-Web.config Connection String" description="Data Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="data source=DESKTOP-KV0K0JR;initial catalog=Babel;integrated security=True;multipleactiveresultsets=True;application name=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\jesus\\source\\repos\\WebApplication2\\WebApplication2\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Data']/@connectionString" />
+  </parameter>
+</parameters>

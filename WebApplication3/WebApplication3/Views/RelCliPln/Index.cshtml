@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebApplication3.Models.RelCliPln>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDCP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDCLIENTE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDPLAN)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDCP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDCLIENTE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDPLAN)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.IDCP }) |
+            @Html.ActionLink("Details", "Details", new { id = item.IDCP }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.IDCP })
+        </td>
+    </tr>
+}
+
+</table>

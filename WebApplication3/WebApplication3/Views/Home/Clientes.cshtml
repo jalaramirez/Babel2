@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebApplication3.Models.Cliente>
+
+@{
+    ViewBag.Title = "Clientes";
+}
+
+<h2>CLIENTE</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDCLIENTE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBRE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.APPATERNO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.APMATERNO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BORRADO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHAMOD)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDCLIENTE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.APPATERNO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.APMATERNO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BORRADO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHAMOD)
+        </td>
+        <td>
+            @Html.ActionLink("Modificar", "Edit", new { id = item.IDCLIENTE }) |
+            @Html.ActionLink("Detalle", "Details", new { id = item.IDCLIENTE }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.IDCLIENTE })|
+            @Html.ActionLink("Borrar", "Borrar", new { id = item.IDCLIENTE })
+        </td>
+    </tr>
+}
+
+</table>

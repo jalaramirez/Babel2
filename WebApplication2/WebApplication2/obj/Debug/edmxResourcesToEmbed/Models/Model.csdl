@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BabelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CLIENTES">
+    <Key>
+      <PropertyRef Name="IDCLIENTE" />
+    </Key>
+    <Property Name="IDCLIENTE" Type="Int32" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="APPATERNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="APMATERNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BORRADO" Type="Boolean" />
+    <Property Name="FECHAMOD" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="REL_CLIENTE_PLAN" Relationship="Self.FK__REL_CLIEN__IDCLI__2B3F6F97" FromRole="CLIENTES" ToRole="REL_CLIENTE_PLAN" />
+  </EntityType>
+  <EntityType Name="COBERTURA">
+    <Key>
+      <PropertyRef Name="IDCOBERTURA" />
+    </Key>
+    <Property Name="IDCOBERTURA" Type="Int32" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FECHAMOD" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="REL_PLAN_COBER" Relationship="Self.FK__REL_PLAN___IDCOB__300424B4" FromRole="COBERTURA" ToRole="REL_PLAN_COBER" />
+  </EntityType>
+  <EntityType Name="PLANES">
+    <Key>
+      <PropertyRef Name="IDPLAN" />
+    </Key>
+    <Property Name="IDPLAN" Type="Int32" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FECHAMOD" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="REL_CLIENTE_PLAN" Relationship="Self.FK__REL_CLIEN__IDPLA__2C3393D0" FromRole="PLANES" ToRole="REL_CLIENTE_PLAN" />
+    <NavigationProperty Name="REL_PLAN_COBER" Relationship="Self.FK__REL_PLAN___IDPLA__2F10007B" FromRole="PLANES" ToRole="REL_PLAN_COBER" />
+  </EntityType>
+  <EntityType Name="REL_CLIENTE_PLAN">
+    <Key>
+      <PropertyRef Name="IDCP" />
+    </Key>
+    <Property Name="IDCP" Type="Int32" Nullable="false" />
+    <Property Name="IDCLIENTE" Type="Int32" Nullable="false" />
+    <Property Name="IDPLAN" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CLIENTES" Relationship="Self.FK__REL_CLIEN__IDCLI__2B3F6F97" FromRole="REL_CLIENTE_PLAN" ToRole="CLIENTES" />
+    <NavigationProperty Name="PLANES" Relationship="Self.FK__REL_CLIEN__IDPLA__2C3393D0" FromRole="REL_CLIENTE_PLAN" ToRole="PLANES" />
+  </EntityType>
+  <EntityType Name="REL_PLAN_COBER">
+    <Key>
+      <PropertyRef Name="IDpc" />
+    </Key>
+    <Property Name="IDpc" Type="Int32" Nullable="false" />
+    <Property Name="IDPLAN" Type="Int32" Nullable="false" />
+    <Property Name="IDCOBER" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="COBERTURA" Relationship="Self.FK__REL_PLAN___IDCOB__300424B4" FromRole="REL_PLAN_COBER" ToRole="COBERTURA" />
+    <NavigationProperty Name="PLANES" Relationship="Self.FK__REL_PLAN___IDPLA__2F10007B" FromRole="REL_PLAN_COBER" ToRole="PLANES" />
+  </EntityType>
+  <Association Name="FK__REL_CLIEN__IDCLI__2B3F6F97">
+    <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="1" />
+    <End Role="REL_CLIENTE_PLAN" Type="Self.REL_CLIENTE_PLAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTES">
+        <PropertyRef Name="IDCLIENTE" />
+      </Principal>
+      <Dependent Role="REL_CLIENTE_PLAN">
+        <PropertyRef Name="IDCLIENTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__REL_PLAN___IDCOB__300424B4">
+    <End Role="COBERTURA" Type="Self.COBERTURA" Multiplicity="1" />
+    <End Role="REL_PLAN_COBER" Type="Self.REL_PLAN_COBER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COBERTURA">
+        <PropertyRef Name="IDCOBERTURA" />
+      </Principal>
+      <Dependent Role="REL_PLAN_COBER">
+        <PropertyRef Name="IDCOBER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__REL_CLIEN__IDPLA__2C3393D0">
+    <End Role="PLANES" Type="Self.PLANES" Multiplicity="1" />
+    <End Role="REL_CLIENTE_PLAN" Type="Self.REL_CLIENTE_PLAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PLANES">
+        <PropertyRef Name="IDPLAN" />
+      </Principal>
+      <Dependent Role="REL_CLIENTE_PLAN">
+        <PropertyRef Name="IDPLAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__REL_PLAN___IDPLA__2F10007B">
+    <End Role="PLANES" Type="Self.PLANES" Multiplicity="1" />
+    <End Role="REL_PLAN_COBER" Type="Self.REL_PLAN_COBER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PLANES">
+        <PropertyRef Name="IDPLAN" />
+      </Principal>
+      <Dependent Role="REL_PLAN_COBER">
+        <PropertyRef Name="IDPLAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BabelEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CLIENTES" EntityType="Self.CLIENTES" />
+    <EntitySet Name="COBERTURA" EntityType="Self.COBERTURA" />
+    <EntitySet Name="PLANES" EntityType="Self.PLANES" />
+    <EntitySet Name="REL_CLIENTE_PLAN" EntityType="Self.REL_CLIENTE_PLAN" />
+    <EntitySet Name="REL_PLAN_COBER" EntityType="Self.REL_PLAN_COBER" />
+    <AssociationSet Name="FK__REL_CLIEN__IDCLI__2B3F6F97" Association="Self.FK__REL_CLIEN__IDCLI__2B3F6F97">
+      <End Role="CLIENTES" EntitySet="CLIENTES" />
+      <End Role="REL_CLIENTE_PLAN" EntitySet="REL_CLIENTE_PLAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK__REL_PLAN___IDCOB__300424B4" Association="Self.FK__REL_PLAN___IDCOB__300424B4">
+      <End Role="COBERTURA" EntitySet="COBERTURA" />
+      <End Role="REL_PLAN_COBER" EntitySet="REL_PLAN_COBER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__REL_CLIEN__IDPLA__2C3393D0" Association="Self.FK__REL_CLIEN__IDPLA__2C3393D0">
+      <End Role="PLANES" EntitySet="PLANES" />
+      <End Role="REL_CLIENTE_PLAN" EntitySet="REL_CLIENTE_PLAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK__REL_PLAN___IDPLA__2F10007B" Association="Self.FK__REL_PLAN___IDPLA__2F10007B">
+      <End Role="PLANES" EntitySet="PLANES" />
+      <End Role="REL_PLAN_COBER" EntitySet="REL_PLAN_COBER" />
+    </AssociationSet>
+    <FunctionImport Name="SP_ALTA_CLIENTE">
+      <Parameter Name="NOMBRE" Mode="In" Type="String" />
+      <Parameter Name="APPATER" Mode="In" Type="String" />
+      <Parameter Name="APMATER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ELIMINAR_CLIENTE">
+      <Parameter Name="IDCLIENTE" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_OBTENER_CLIENTES" ReturnType="Collection(BabelModel.SP_OBTENER_CLIENTES_Result)" />
+  </EntityContainer>
+  <ComplexType Name="SP_OBTENER_CLIENTES_Result">
+    <Property Type="Int32" Name="IDCLIENTE" Nullable="false" />
+    <Property Type="String" Name="NOMBRE" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="APPATERNO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="APMATERNO" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="BORRADO" Nullable="true" />
+    <Property Type="Binary" Name="FECHAMOD" Nullable="false" MaxLength="8" />
+  </ComplexType>
+</Schema>

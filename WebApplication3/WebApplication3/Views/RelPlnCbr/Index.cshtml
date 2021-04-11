@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebApplication3.Models.RelPlcCbr>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDpc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDPLAN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDCOBER)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDpc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDPLAN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDCOBER)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDpc }) |
+            @Html.ActionLink("Details", "Details", new { id = item.IDpc }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.IDpc })
+        </td>
+    </tr>
+}
+
+</table>

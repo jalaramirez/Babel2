@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BabelModelStoreContainer" CdmEntityContainer="BabelEntities">
+    <EntitySetMapping Name="CLIENTES">
+      <EntityTypeMapping TypeName="BabelModel.CLIENTES">
+        <MappingFragment StoreEntitySet="CLIENTES">
+          <ScalarProperty Name="IDCLIENTE" ColumnName="IDCLIENTE" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="APPATERNO" ColumnName="APPATERNO" />
+          <ScalarProperty Name="APMATERNO" ColumnName="APMATERNO" />
+          <ScalarProperty Name="BORRADO" ColumnName="BORRADO" />
+          <ScalarProperty Name="FECHAMOD" ColumnName="FECHAMOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COBERTURA">
+      <EntityTypeMapping TypeName="BabelModel.COBERTURA">
+        <MappingFragment StoreEntitySet="COBERTURA">
+          <ScalarProperty Name="IDCOBERTURA" ColumnName="IDCOBERTURA" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="FECHAMOD" ColumnName="FECHAMOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PLANES">
+      <EntityTypeMapping TypeName="BabelModel.PLANES">
+        <MappingFragment StoreEntitySet="PLANES">
+          <ScalarProperty Name="IDPLAN" ColumnName="IDPLAN" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="FECHAMOD" ColumnName="FECHAMOD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REL_CLIENTE_PLAN">
+      <EntityTypeMapping TypeName="BabelModel.REL_CLIENTE_PLAN">
+        <MappingFragment StoreEntitySet="REL_CLIENTE_PLAN">
+          <ScalarProperty Name="IDCP" ColumnName="IDCP" />
+          <ScalarProperty Name="IDCLIENTE" ColumnName="IDCLIENTE" />
+          <ScalarProperty Name="IDPLAN" ColumnName="IDPLAN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REL_PLAN_COBER">
+      <EntityTypeMapping TypeName="BabelModel.REL_PLAN_COBER">
+        <MappingFragment StoreEntitySet="REL_PLAN_COBER">
+          <ScalarProperty Name="IDpc" ColumnName="IDpc" />
+          <ScalarProperty Name="IDPLAN" ColumnName="IDPLAN" />
+          <ScalarProperty Name="IDCOBER" ColumnName="IDCOBER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_ALTA_CLIENTE" FunctionName="BabelModel.Store.SP_ALTA_CLIENTE" />
+    <FunctionImportMapping FunctionImportName="SP_ELIMINAR_CLIENTE" FunctionName="BabelModel.Store.SP_ELIMINAR_CLIENTE" />
+    <FunctionImportMapping FunctionImportName="SP_OBTENER_CLIENTES" FunctionName="BabelModel.Store.SP_OBTENER_CLIENTES">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BabelModel.SP_OBTENER_CLIENTES_Result">
+          <ScalarProperty Name="IDCLIENTE" ColumnName="IDCLIENTE" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="APPATERNO" ColumnName="APPATERNO" />
+          <ScalarProperty Name="APMATERNO" ColumnName="APMATERNO" />
+          <ScalarProperty Name="BORRADO" ColumnName="BORRADO" />
+          <ScalarProperty Name="FECHAMOD" ColumnName="FECHAMOD" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BabelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CLIENTES">
+    <Key>
+      <PropertyRef Name="IDCLIENTE" />
+    </Key>
+    <Property Name="IDCLIENTE" Type="int" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="50" />
+    <Property Name="APPATERNO" Type="varchar" MaxLength="50" />
+    <Property Name="APMATERNO" Type="varchar" MaxLength="50" />
+    <Property Name="BORRADO" Type="bit" />
+    <Property Name="FECHAMOD" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="COBERTURA">
+    <Key>
+      <PropertyRef Name="IDCOBERTURA" />
+    </Key>
+    <Property Name="IDCOBERTURA" Type="int" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
+    <Property Name="FECHAMOD" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PLANES">
+    <Key>
+      <PropertyRef Name="IDPLAN" />
+    </Key>
+    <Property Name="IDPLAN" Type="int" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
+    <Property Name="FECHAMOD" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="REL_CLIENTE_PLAN">
+    <Key>
+      <PropertyRef Name="IDCP" />
+    </Key>
+    <Property Name="IDCP" Type="int" Nullable="false" />
+    <Property Name="IDCLIENTE" Type="int" Nullable="false" />
+    <Property Name="IDPLAN" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="REL_PLAN_COBER">
+    <Key>
+      <PropertyRef Name="IDpc" />
+    </Key>
+    <Property Name="IDpc" Type="int" Nullable="false" />
+    <Property Name="IDPLAN" Type="int" Nullable="false" />
+    <Property Name="IDCOBER" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__REL_CLIEN__IDCLI__2B3F6F97">
+    <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="1" />
+    <End Role="REL_CLIENTE_PLAN" Type="Self.REL_CLIENTE_PLAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTES">
+        <PropertyRef Name="IDCLIENTE" />
+      </Principal>
+      <Dependent Role="REL_CLIENTE_PLAN">
+        <PropertyRef Name="IDCLIENTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__REL_CLIEN__IDPLA__2C3393D0">
+    <End Role="PLANES" Type="Self.PLANES" Multiplicity="1" />
+    <End Role="REL_CLIENTE_PLAN" Type="Self.REL_CLIENTE_PLAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PLANES">
+        <PropertyRef Name="IDPLAN" />
+      </Principal>
+      <Dependent Role="REL_CLIENTE_PLAN">
+        <PropertyRef Name="IDPLAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__REL_PLAN___IDCOB__300424B4">
+    <End Role="COBERTURA" Type="Self.COBERTURA" Multiplicity="1" />
+    <End Role="REL_PLAN_COBER" Type="Self.REL_PLAN_COBER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COBERTURA">
+        <PropertyRef Name="IDCOBERTURA" />
+      </Principal>
+      <Dependent Role="REL_PLAN_COBER">
+        <PropertyRef Name="IDCOBER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__REL_PLAN___IDPLA__2F10007B">
+    <End Role="PLANES" Type="Self.PLANES" Multiplicity="1" />
+    <End Role="REL_PLAN_COBER" Type="Self.REL_PLAN_COBER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PLANES">
+        <PropertyRef Name="IDPLAN" />
+      </Principal>
+      <Dependent Role="REL_PLAN_COBER">
+        <PropertyRef Name="IDPLAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="SP_ALTA_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NOMBRE" Type="varchar" Mode="In" />
+    <Parameter Name="APPATER" Type="varchar" Mode="In" />
+    <Parameter Name="APMATER" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_ELIMINAR_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDCLIENTE" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_OBTENER_CLIENTES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="BabelModelStoreContainer">
+    <EntitySet Name="CLIENTES" EntityType="Self.CLIENTES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="COBERTURA" EntityType="Self.COBERTURA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PLANES" EntityType="Self.PLANES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="REL_CLIENTE_PLAN" EntityType="Self.REL_CLIENTE_PLAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="REL_PLAN_COBER" EntityType="Self.REL_PLAN_COBER" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__REL_CLIEN__IDCLI__2B3F6F97" Association="Self.FK__REL_CLIEN__IDCLI__2B3F6F97">
+      <End Role="CLIENTES" EntitySet="CLIENTES" />
+      <End Role="REL_CLIENTE_PLAN" EntitySet="REL_CLIENTE_PLAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK__REL_CLIEN__IDPLA__2C3393D0" Association="Self.FK__REL_CLIEN__IDPLA__2C3393D0">
+      <End Role="PLANES" EntitySet="PLANES" />
+      <End Role="REL_CLIENTE_PLAN" EntitySet="REL_CLIENTE_PLAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK__REL_PLAN___IDCOB__300424B4" Association="Self.FK__REL_PLAN___IDCOB__300424B4">
+      <End Role="COBERTURA" EntitySet="COBERTURA" />
+      <End Role="REL_PLAN_COBER" EntitySet="REL_PLAN_COBER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__REL_PLAN___IDPLA__2F10007B" Association="Self.FK__REL_PLAN___IDPLA__2F10007B">
+      <End Role="PLANES" EntitySet="PLANES" />
+      <End Role="REL_PLAN_COBER" EntitySet="REL_PLAN_COBER" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
