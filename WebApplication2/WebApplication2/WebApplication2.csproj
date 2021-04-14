@@ -162,6 +162,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\CLIENTES1Controller.cs" />
     <Compile Include="Controllers\CLIENTESController.cs" />
     <Compile Include="Controllers\COBERTURAsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -174,7 +175,7 @@
     </Compile>
     <Compile Include="Models\CLIENTES.cs" />
     <Compile Include="Models\COBERTURA.cs" />
-    <Compile Include="Models\Data.cs" />
+    <Compile Include="Models\Model1.cs" />
     <Compile Include="Models\PLANES.cs" />
     <Compile Include="Models\REL_CLIENTE_PLAN.cs" />
     <Compile Include="Models\REL_PLAN_COBER.cs" />

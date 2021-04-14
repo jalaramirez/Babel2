@@ -14,7 +14,7 @@ namespace WebApplication2.Controllers
 {
     public class COBERTURAsController : ApiController
     {
-        private Data db = new Data();
+        private Model1 db = new Model1();
 
         // GET: api/COBERTURAs
         public IQueryable<COBERTURA> GetCOBERTURA()
@@ -39,6 +39,7 @@ namespace WebApplication2.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCOBERTURA(int id, COBERTURA cOBERTURA)
         {
+            cOBERTURA.FECHAMOD = DateTime.Now;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -74,6 +75,7 @@ namespace WebApplication2.Controllers
         [ResponseType(typeof(COBERTURA))]
         public IHttpActionResult PostCOBERTURA(COBERTURA cOBERTURA)
         {
+            cOBERTURA.FECHAMOD = DateTime.Now;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

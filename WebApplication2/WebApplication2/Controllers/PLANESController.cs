@@ -14,7 +14,7 @@ namespace WebApplication2.Controllers
 {
     public class PLANESController : ApiController
     {
-        private Data db = new Data();
+        private Model1 db = new Model1();
 
         // GET: api/PLANES
         public IQueryable<PLANES> GetPLANES()
@@ -39,6 +39,7 @@ namespace WebApplication2.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPLANES(int id, PLANES pLANES)
         {
+            pLANES.FECHAMOD = DateTime.Now;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -74,11 +75,12 @@ namespace WebApplication2.Controllers
         [ResponseType(typeof(PLANES))]
         public IHttpActionResult PostPLANES(PLANES pLANES)
         {
+            pLANES.FECHAMOD = DateTime.Now;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
+           
             db.PLANES.Add(pLANES);
 
             try

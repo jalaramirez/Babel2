@@ -229,13 +229,15 @@
     <Content Include="Views\Cobertura\Delete.cshtml" />
     <Content Include="Views\Cobertura\Edit.cshtml" />
     <Content Include="Views\RelCliPln\Index.cshtml" />
-    <Content Include="Views\RelCliPln\View.cshtml" />
+    <Content Include="Views\RelCliPln\Create.cshtml" />
     <Content Include="Views\RelCliPln\Delete.cshtml" />
     <Content Include="Views\RelCliPln\Edit.cshtml" />
     <Content Include="Views\RelPlnCbr\Index.cshtml" />
     <Content Include="Views\RelPlnCbr\Create.cshtml" />
     <Content Include="Views\RelPlnCbr\Delete.cshtml" />
     <Content Include="Views\RelPlnCbr\Edit.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Plan\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

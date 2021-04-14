@@ -111,12 +111,52 @@ namespace WebApplication3.Controllers
             using (var API = new HttpClient())
             {
                 API.BaseAddress = new Uri(Baseurl);
-                var responstask = API.PutAsJsonAsync("CoberturaS/ {" + Cobertura.IDCOBERTURA + "}", Cobertura);
+                var responstask = API.PutAsJsonAsync("CoberturaS/" + Cobertura.IDCOBERTURA + "", Cobertura);
                 responstask.Wait();
                 var result = responstask.Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Cobertura");
+                    return RedirectToAction("Coberturas");
+                }
+            }
+
+            return View(Cobertura);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            Cobertura Cobertura = null;
+            using (var API = new HttpClient())
+            {
+                API.BaseAddress = new Uri(Baseurl);
+                var responstask = API.GetAsync("CoberturaS/" + id.ToString());
+                responstask.Wait();
+
+                var result = responstask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<Cobertura>();
+                    readTask.Wait();
+                    Cobertura = readTask.Result;
+                }
+
+            }
+
+            return View(Cobertura);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(Cobertura Cobertura, int id)
+        {
+            using (var API = new HttpClient())
+            {
+                API.BaseAddress = new Uri(Baseurl);
+                var responstask = API.DeleteAsync("CoberturaS/" + id + "");
+                responstask.Wait();
+                var result = responstask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Coberturas");
                 }
             }
 

@@ -99,6 +99,31 @@ namespace WebApplication3.Controllers
             return View(Cliente);
         }
 
+        public ActionResult Details(int id)
+        {
+            Cliente cliente = null;
+            List <Plan> CP = new List<Plan>();
+            using (var API = new HttpClient())
+            {
+                API.BaseAddress = new Uri(Baseurl);
+                var responstask = API.GetAsync("CLIENTES/" + id.ToString());
+                responstask.Wait();
+
+                var result = responstask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<Cliente>();
+                    readTask.Wait();
+                    cliente = readTask.Result;
+                }
+                foreach (RelCliPln i in cliente.REL_CLIENTE_PLAN ) {
+                    CP.Add(i.PLANES);
+                }
+
+            }
+
+            return View(cliente);
+        }
         public ActionResult Edit(int id)
         {
             Cliente cliente = null;

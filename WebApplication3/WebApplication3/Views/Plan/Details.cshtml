@@ -1,0 +1,22 @@
+﻿@model WebApplication3.Models.Plan
+
+<div>
+    <h4>Plan @Html.DisplayFor(model => model.IDPLAN)   @Html.DisplayFor(model => model.DESCRIPCION) </h4>
+    <h3>Ultima actualizacion:  @Html.DisplayFor(model => model.FECHAMOD) </h3>
+    <hr />
+    <dl class="dl-horizontal">
+        @foreach (var item in Model.REL_PLAN_COBER)
+        {
+            <dd>
+                @Html.DisplayNameFor(modelItem => item.COBERTURA.IDCOBERTURA): @Html.DisplayFor(modelItem => item.COBERTURA.IDCOBERTURA)
+            </dd>
+            <dd>
+                @Html.DisplayNameFor(modelItem => item.COBERTURA.DESCRIPCION): @Html.DisplayFor(modelItem => item.COBERTURA.DESCRIPCION)
+            </dd>
+        }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Regresar a la lista", "Planes")
+</p>

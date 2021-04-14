@@ -12,7 +12,7 @@ namespace WebApplication3.Models
 
     public class Cliente 
     {
-        public List<object> REL_CLIENTE_PLAN { get; set; }
+        public List<RelCliPln> REL_CLIENTE_PLAN { get; set; }
         public int IDCLIENTE { get; set; }
         public string NOMBRE { get; set; }
         public string APPATERNO { get; set; }
@@ -23,8 +23,8 @@ namespace WebApplication3.Models
 
     public class Plan 
     {
-        public List<object> REL_CLIENTE_PLAN { get; set; }
-        public List<object> REL_PLAN_COBER { get; set; }
+        public List<RelCliPln> REL_CLIENTE_PLAN { get; set; }
+        public List<RelPlcCbr> REL_PLAN_COBER { get; set; }
         public int IDPLAN { get; set; }
         public string DESCRIPCION { get; set; }
         public string FECHAMOD { get; set; }
@@ -32,7 +32,7 @@ namespace WebApplication3.Models
 
     public class Cobertura 
     {
-        public List<object> REL_PLAN_COBER { get; set; }
+        public List<RelPlcCbr> REL_PLAN_COBER { get; set; }
         public int IDCOBERTURA { get; set; }
         public string DESCRIPCION { get; set; }
         public string FECHAMOD { get; set; }

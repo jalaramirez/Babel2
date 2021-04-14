@@ -1,0 +1,26 @@
+﻿@model WebApplication3.Models.Cliente
+
+<div>
+    <h4>
+        Cliente:  @Html.DisplayFor(model => model.NOMBRE)
+        @Html.DisplayFor(model => model.APPATERNO) @Html.DisplayFor(model => model.APMATERNO)
+    </h4>
+    <h4>Ultima actualizacion: @Html.DisplayFor(model => model.FECHAMOD)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @foreach (var item in Model.REL_CLIENTE_PLAN)
+        {
+        <dd>
+            @Html.DisplayNameFor(modelItem => item.PLANES.IDPLAN): @Html.DisplayFor(modelItem => item.PLANES.IDPLAN)
+        </dd>
+        <dd>
+            @Html.DisplayNameFor(modelItem => item.PLANES.DESCRIPCION): @Html.DisplayFor(modelItem => item.PLANES.DESCRIPCION)
+        </dd>
+        }
+       
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -15,7 +15,6 @@ namespace WebApplication2.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IDCLIENTE { get; set; }
 
         [StringLength(50)]
@@ -29,10 +28,7 @@ namespace WebApplication2.Models
 
         public bool? BORRADO { get; set; }
 
-        [Column(TypeName = "timestamp")]
-        [MaxLength(8)]
-        [Timestamp]
-        public byte[] FECHAMOD { get; set; }
+        public DateTime? FECHAMOD { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<REL_CLIENTE_PLAN> REL_CLIENTE_PLAN { get; set; }

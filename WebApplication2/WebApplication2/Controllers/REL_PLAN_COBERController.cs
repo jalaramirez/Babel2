@@ -14,7 +14,7 @@ namespace WebApplication2.Controllers
 {
     public class REL_PLAN_COBERController : ApiController
     {
-        private Data db = new Data();
+        private Model1 db = new Model1();
 
         // GET: api/REL_PLAN_COBER
         public IQueryable<REL_PLAN_COBER> GetREL_PLAN_COBER()

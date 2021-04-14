@@ -1,6 +1,6 @@
 ﻿@model WebApplication3.Models.Cliente
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>El registro se borrara permanentemente </h3>
 <div>
     <h4>Cliente</h4>
     <hr />
@@ -59,8 +59,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("REgresar a la lista", "Index")
         </div>
     }
 </div>

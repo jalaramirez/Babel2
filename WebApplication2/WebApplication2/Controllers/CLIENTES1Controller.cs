@@ -12,17 +12,17 @@ using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
-    public class CLIENTESController : ApiController
+    public class CLIENTES1Controller : ApiController
     {
-        private Model1            db = new Model1();
+        private Model1 db = new Model1();
 
-        // GET: api/CLIENTES
+        // GET: api/CLIENTES1
         public IQueryable<CLIENTES> GetCLIENTES()
         {
             return db.CLIENTES;
         }
 
-        // GET: api/CLIENTES/5
+        // GET: api/CLIENTES1/5
         [ResponseType(typeof(CLIENTES))]
         public IHttpActionResult GetCLIENTES(int id)
         {
@@ -35,7 +35,7 @@ namespace WebApplication2.Controllers
             return Ok(cLIENTES);
         }
 
-        // PUT: api/CLIENTES/5
+        // PUT: api/CLIENTES1/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCLIENTES(int id, CLIENTES cLIENTES)
         {
@@ -70,43 +70,22 @@ namespace WebApplication2.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/CLIENTES
+        // POST: api/CLIENTES1
         [ResponseType(typeof(CLIENTES))]
         public IHttpActionResult PostCLIENTES(CLIENTES cLIENTES)
         {
-            CLIENTES aux = new CLIENTES();
-            aux.NOMBRE = cLIENTES.NOMBRE;
-            aux.APMATERNO = cLIENTES.APMATERNO;
-            aux.APPATERNO = cLIENTES.APPATERNO;
-            aux.FECHAMOD = DateTime.Now;
-            aux.BORRADO = cLIENTES.BORRADO;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.CLIENTES.Add(aux);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (CLIENTESExists(cLIENTES.IDCLIENTE))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            db.CLIENTES.Add(cLIENTES);
+            db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = cLIENTES.IDCLIENTE }, cLIENTES);
         }
 
-        // DELETE: api/CLIENTES/5
+        // DELETE: api/CLIENTES1/5
         [ResponseType(typeof(CLIENTES))]
         public IHttpActionResult DeleteCLIENTES(int id)
         {

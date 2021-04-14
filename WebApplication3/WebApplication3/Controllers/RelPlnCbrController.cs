@@ -45,8 +45,47 @@ namespace WebApplication3.Controllers
             return View(CliInfo);
         }
 
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            List<Cobertura> CliInfo = new List<Cobertura>();
+            List<Plan> planInfo = new List<Plan>();
+
+            using (var API = new HttpClient())
+            {
+                API.BaseAddress = new Uri(Baseurl);
+
+                API.DefaultRequestHeaders.Clear();
+                //Define request data format  
+                API.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
+                HttpResponseMessage Res = await API.GetAsync("COBERTURAs");
+
+                //Checking the response is successful or not which is sent using HttpClient  
+                if (Res.IsSuccessStatusCode)
+                {
+                    //Storing the response details recieved from web api   
+                    var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+
+                    //Deserializing the response recieved from web api and storing into the Employee list  
+                    CliInfo = JsonConvert.DeserializeObject<List<Cobertura>>(EmpResponse);
+
+                }
+                HttpResponseMessage Res2 = await API.GetAsync("PLANES");
+
+                //Checking the response is successful or not which is sent using HttpClient  
+                if (Res.IsSuccessStatusCode)
+                {
+                    //Storing the response details recieved from web api   
+                    var EmpResponse = Res2.Content.ReadAsStringAsync().Result;
+
+                    //Deserializing the response recieved from web api and storing into the Employee list  
+                    planInfo = JsonConvert.DeserializeObject<List<Plan>>(EmpResponse);
+
+                }
+                ViewBag.Coberturas = CliInfo;
+                ViewBag.planes = planInfo;
+            }
             return View();
         }
         [HttpPost]

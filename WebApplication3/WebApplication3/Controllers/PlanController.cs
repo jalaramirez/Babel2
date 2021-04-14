@@ -72,12 +72,33 @@ namespace WebApplication3.Controllers
                 var result = postTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Plans");
+                    return RedirectToAction("Planes");
 
                 }
             }
 
             ModelState.AddModelError(string.Empty, "Error, Contate al administrador");
+            return View(Plan);
+        }
+        public ActionResult Details(int id)
+        {
+            Plan Plan = null;
+            using (var API = new HttpClient())
+            {
+                API.BaseAddress = new Uri(Baseurl);
+                var responstask = API.GetAsync("PLANES/" + id.ToString());
+                responstask.Wait();
+
+                var result = responstask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<Plan>();
+                    readTask.Wait();
+                    Plan = readTask.Result;
+                }
+
+            }
+
             return View(Plan);
         }
 
@@ -102,6 +123,7 @@ namespace WebApplication3.Controllers
 
             return View(Plan);
         }
+
 
         [HttpPost]
         public ActionResult Edit(Plan Plan)

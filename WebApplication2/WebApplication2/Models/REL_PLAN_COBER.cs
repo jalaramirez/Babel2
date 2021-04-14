@@ -9,7 +9,6 @@ namespace WebApplication2.Models
     public partial class REL_PLAN_COBER
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IDpc { get; set; }
 
         public int IDPLAN { get; set; }

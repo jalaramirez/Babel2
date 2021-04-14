@@ -9,7 +9,6 @@ namespace WebApplication2.Models
     public partial class REL_CLIENTE_PLAN
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IDCP { get; set; }
 
         public int IDCLIENTE { get; set; }
