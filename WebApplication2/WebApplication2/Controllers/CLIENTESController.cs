@@ -84,9 +84,14 @@ namespace WebApplication2.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            db.CLIENTES.Add(aux);
-
+           var result = db.CLIENTES.Where(a => a.NOMBRE == aux.NOMBRE && a.APMATERNO == aux.APMATERNO && a.APPATERNO == aux.APPATERNO).ToList();
+            if (result.Count == 0)
+            {
+                db.CLIENTES.Add(aux);
+            }
+            else {
+                return Conflict();
+            }
             try
             {
                 db.SaveChanges();

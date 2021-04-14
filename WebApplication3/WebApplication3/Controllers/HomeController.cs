@@ -93,6 +93,11 @@ namespace WebApplication3.Controllers
                     return RedirectToAction("Clientes");
 
                 }
+                if (result.ReasonPhrase == "Conflict")
+                {
+                    ModelState.AddModelError(string.Empty, "Error, El Cliente ya existe");
+
+                }
             }
 
             ModelState.AddModelError(string.Empty,"Error, Contate al administrador");
